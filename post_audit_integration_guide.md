@@ -190,7 +190,6 @@ Remove any UI for changing `nrxToken` or `usdcToken`; token setters are disabled
 
 ---
 
-## 3. Backend & DevOps Updates
 
 ### 3.1 Deployment Configuration
 
@@ -271,21 +270,11 @@ await crowdsale.setOracleHeartbeat(7200);    // PARAM_ADMIN_ROLE
 
 For L2 deployments, add a Chainlink Sequencer Uptime Feed check in deployment requirements. The current contracts do not implement sequencer checks internally.
 
-### 3.6 Safe Upgrades
 
-Before UUPS upgrades:
-
-```typescript
-await upgrades.validateUpgrade(proxyAddress, NewImplementation, { kind: "uups" });
-await upgrades.upgradeProxy(proxyAddress, NewImplementation, {
-  kind: "uups",
-  unsafeSkipStorageCheck: false,
-});
-```
 
 Do not use global `unsafeSkipStorageCheck`. Any per-call bypass must have a documented storage-layout review.
 
-### 3.7 Deployment Manifest
+### 3.6 Deployment Manifest
 
 Maintain a shared per-network manifest:
 
